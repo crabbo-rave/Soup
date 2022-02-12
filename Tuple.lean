@@ -28,13 +28,6 @@ instance (αs : List Type) [TupleRepr (Tuple αs)] : Repr (Tuple αs) where
   reprPrec
   | v, _ => "⟪" ++ TupleRepr.repr v ++ "⟫"
 
--- notation:max p "^" i => nth i p
--- notation:max p "#" i => nth i p
--- notation:max p "@" i => nth i p
--- notation:max p "[" i "]" => nth i p
--- notation:max p "::" i => nth i p
--- notation:max p "∧" i => nth i p
-
 def head {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) : α :=
   match tup with
   | Tuple.cons x xs => x
@@ -52,10 +45,16 @@ def length {αs : List Type} (tup: Tuple (αs)) : Nat :=
   | ⟪⟫ => 0
   | _ => lengthAux tup 0
 
-def nth {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) (n: Nat) :=
-  let rec nthAux {α : Type} {αs : List Type} {β : Type} : (tupRest: Tuple (α :: αs)) → (n: Nat) → α
-    | (Tuple.cons x xs), 0 => x
-    | (Tuple.cons _ xs), n+1 => nthAux (xs) n
-  nthAux tup n
+def nth : {αs : List Type} → (t : Tuple αs) → (n : Nat) → (h : n < αs.length := by simp) → αs.get n h
+  | _, Tuple.unit, n, h => False.elim $ Nat.not_lt_zero _ h
+  | _, Tuple.cons x xs, 0, h => x
+  | _, Tuple.cons x xs, (n+1), h => xs.nth n (Nat.le_of_succ_le_succ h)
+
+notation:max p "^" i => nth p i
+notation:max p "#" i => nth p i
+notation:max p "@" i => nth p i
+notation:max p "[" i "]" => nth p i
+notation:max p "::" i => nth p i
+notation:max p "∧" i => nth p i
 
 end Tuple
