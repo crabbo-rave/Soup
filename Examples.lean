@@ -20,5 +20,5 @@ def tuplePatternMatch (tup: Tuple [Nat, String]) :=
 #eval tuplePatternMatch ⟪1, "2"⟫ -- true
 #eval tuplePatternMatch ⟪1, "3"⟫ -- false
 
-def foo := ⟪1,2,3⟫
-#eval foo.head
+def foo := ⟪1, "2", 3.0⟫
+#eval foo
