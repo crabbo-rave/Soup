@@ -50,11 +50,11 @@ def nth : {αs : List Type} → (t : Tuple αs) → (n : Nat) → (h : n < αs.l
   | _, Tuple.cons x xs, 0, h => x
   | _, Tuple.cons x xs, (n+1), h => xs.nth n (Nat.le_of_succ_le_succ h)
 
-notation:max p "^" i => nth p i
-notation:max p "#" i => nth p i
-notation:max p "@" i => nth p i
-notation:max p "[" i "]" => nth p i
-notation:max p "::" i => nth p i
-notation:max p "∧" i => nth p i
+-- notation:max p "^" i => nth p i
+-- notation:max p "#" i => nth p i
+-- notation:max p "@" i => nth p i
+-- notation:max p "[" i "]" => nth p i
+-- notation:max p "::" i => nth p i
+-- notation:max p "∧" i => nth p i
 
 end Tuple

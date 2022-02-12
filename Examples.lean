@@ -25,4 +25,6 @@ def bar := ⟪1, "2", 3.0⟫
 
 def foo : Tuple [Bool, String, Unit] := ⟪true, "hi", ()⟫
 
-#eval foo[0]
+def a := foo.nth 1
+
+#eval a -- "hi"
