@@ -11,6 +11,9 @@ open Tuple
 #eval ⟪1, 2, 3⟫.head -- 1
 #eval ⟪1, 2, 3⟫.tail -- ⟪2, 3⟫
 
+def bar := ⟪1, "2", 3.0⟫
+#eval bar
+
 def tuplePatternMatch (tup: Tuple [Nat, String]) :=
   match tup with
   | ⟪1, "2"⟫ => true
@@ -18,13 +21,4 @@ def tuplePatternMatch (tup: Tuple [Nat, String]) :=
   | _ => false
 
 #eval tuplePatternMatch ⟪1, "2"⟫ -- true
-#eval tuplePatternMatch ⟪1, "3"⟫ -- false
-
-def bar := ⟪1, "2", 3.0⟫
-#eval bar
-
-def foo : Tuple [Bool, String, Unit] := ⟪true, "hi", ()⟫
-
-def a := foo.nth 1
-
-#eval a -- "hi"
+#eval tuplePatternMatch ⟪1, "3"⟫  -- "hi"
