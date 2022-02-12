@@ -19,6 +19,14 @@ The tuple syntax looks like this:
 #eval ⟪⟫ -- ⟪⟫
 ```
 
+And are essentially a list of types:
+```lean
+-- cons 1 (cons 4 (cons 2.4 (cons (Char.ofNat 88) (cons [1, 2, 45] unit)))) 
+-- : Tuple [Nat, Nat, Float, Char, List Nat]
+#check ⟪1, 4, 2.4, 'X', [1, 2, 45]⟫ 
+#check ⟪⟫ -- unit : Tuple []
+```
+
 You can get the length of them:
 ```lean
 #eval ⟪⟫.length -- 0
