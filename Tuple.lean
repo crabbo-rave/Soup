@@ -4,16 +4,6 @@ inductive Tuple : List Type → Type 1 where
 
 namespace Tuple
 
--- instance (α β : Type _) : Nth (α × β) 0 α where
---   nth p := p.1
-
--- instance (α β γ : Type _) [Nth β n γ] : Nth (α × β) (n + 1) γ where
---   nth p := nth n p.2
-
--- @[defaultInstance 0]
--- instance : Nth α 0 α where
---   nth x := x
-
 syntax "⟪" sepBy(term, ",", ", ") "⟫" : term
 macro_rules
   | `(⟪⟫) => `(Tuple.unit)
@@ -62,10 +52,10 @@ def length {αs : List Type} (tup: Tuple (αs)) : Nat :=
   | ⟪⟫ => 0
   | _ => lengthAux tup 0
 
--- def nth {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) (n: Nat) :=
---   let rec nthAux {α : Type} {αs : List Type} {β : Type} : (tupRest: Tuple (αs)) → (n: Nat) → α
---     | (Tuple.cons x xs), 0 => x
---     | (Tuple.cons x xs), n+1 => nthAux xs n
---   nthAux tup n
+def nth {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) (n: Nat) :=
+  let rec nthAux {α : Type} {αs : List Type} {β : Type} : (tupRest: Tuple (α :: αs)) → (n: Nat) → α
+    | (Tuple.cons x xs), 0 => x
+    | (Tuple.cons _ xs), n+1 => nthAux (xs) n
+  nthAux tup n
 
 end Tuple
