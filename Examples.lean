@@ -1,16 +1,17 @@
 import Tuple
+open Tuple
 
 #eval ⟪1, 4, 2.4, 'X', [1, 2, 45]⟫ -- ⟪1, 4, 2.4, 'X', [1, 2, 45]⟫
 #eval ⟪⟫ -- ⟪⟫
 
-#eval Tuple.length ⟪⟫ -- 0
-#eval Tuple.length ⟪1⟫ -- 1
-#eval Tuple.length ⟪1, "4", #[1, 5, -2]⟫ -- 3
+#eval ⟪⟫.length -- 0
+#eval ⟪1⟫.length -- 1
+#eval ⟪1, "4", #[1, 5, -2]⟫.length -- 3
 
-#eval Tuple.head ⟪1, 2, 3⟫ -- 1
-#eval Tuple.tail ⟪1, 2, 3⟫ -- ⟪2, 3⟫
+#eval ⟪1, 2, 3⟫.head -- 1
+#eval ⟪1, 2, 3⟫.tail -- ⟪2, 3⟫
 
-def tuplePatternMatch (tup: Tuple.Tuple [Nat, String]) :=
+def tuplePatternMatch (tup: Tuple [Nat, String]) :=
   match tup with
   | ⟪1, "2"⟫ => true
   | ⟪2, "1"⟫ => true
@@ -18,3 +19,6 @@ def tuplePatternMatch (tup: Tuple.Tuple [Nat, String]) :=
 
 #eval tuplePatternMatch ⟪1, "2"⟫ -- true
 #eval tuplePatternMatch ⟪1, "3"⟫ -- false
+
+def foo := ⟪1,2,3⟫
+#eval foo.head
