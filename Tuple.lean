@@ -67,10 +67,10 @@ def length {αs : List Type} (tup: Tuple (αs)) : Nat :=
   | ⟪⟫ => 0
   | _ => lengthAux tup 0
 
--- def nth {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) (n: Nat) :=
---   def nthAux {α : Type} {αs : List Type} {β : Type u}: (tup: Tuple (α :: αs)) → (n: Nat) → β
---     | tup, 0 => head tup
---     | (Tuple.cons x xs), n+1 => nthAux xs n
---   ()
+def nth {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) (n: Nat) :=
+  let rec nthAux {α : Type} {αs : List Type} {β : Type} : (tupRest: Tuple (αs)) → (n: Nat) → α
+    | (Tuple.cons x xs), 0 => x
+    | (Tuple.cons x xs), n+1 => nthAux xs n
+  nthAux tup n
 
 end Tuple
