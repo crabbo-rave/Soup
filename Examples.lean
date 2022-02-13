@@ -35,4 +35,8 @@ def tuplePatternMatch (tup: Tuple [Nat, String]) :=
 
 -- Getting nth item
 #eval ⟪1,"2",3.0⟫.nth 1
+#eval ⟪1,"2",3.0⟫#1
 #eval ⟪1,"2",3.0⟫@1
+#eval ⟪1,"2",3.0⟫[1]
+#eval ⟪1,"2",3.0⟫::1
+#eval ⟪1,"2",3.0⟫∧1
