@@ -1,3 +1,10 @@
+@[reducible] def List.get' {α : Type u} : (as : List α) → (i : Nat) → LT.lt i as.length → α
+  | nil,       i,          h => absurd h (Nat.not_lt_zero _)
+  | cons a as, 0,          h => a
+  | cons a as, Nat.succ i, h =>
+    have : LT.lt i.succ as.length.succ := length_cons .. ▸ h
+    get' as i (Nat.le_of_succ_le_succ this)
+
 inductive Tuple : List Type → Type 1 where
   | unit : Tuple []
   | cons {α : Type} (x : α) {αs : List Type} (xs : Tuple αs) : Tuple (α :: αs)
@@ -45,16 +52,16 @@ def length {αs : List Type} (tup: Tuple (αs)) : Nat :=
   | ⟪⟫ => 0
   | _ => lengthAux tup 0
 
-def nth : {αs : List Type} → (t : Tuple αs) → (n : Nat) → (h : n < αs.length := by simp) → αs.get n h
+def nth : {αs : List Type} → (t : Tuple αs) → (n : Nat) → (h : n < αs.length := by simp) → αs.get' n h
   | _, Tuple.unit, n, h => False.elim $ Nat.not_lt_zero _ h
   | _, Tuple.cons x xs, 0, h => x
   | _, Tuple.cons x xs, (n+1), h => xs.nth n (Nat.le_of_succ_le_succ h)
 
--- notation:max p "^" i => nth p i
--- notation:max p "#" i => nth p i
--- notation:max p "@" i => nth p i
--- notation:max p "[" i "]" => nth p i
--- notation:max p "::" i => nth p i
--- notation:max p "∧" i => nth p i
+notation:max p "^" i => nth p i
+notation:max p "#" i => nth p i
+notation:max p "@" i => nth p i
+notation:max p "[" i "]" => nth p i
+notation:max p "::" i => nth p i
+notation:max p "∧" i => nth p i
 
 end Tuple
