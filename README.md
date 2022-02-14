@@ -2,7 +2,16 @@
 Tuples for lean 4
 
 # Use
-Add the git repository to your `lakefile.lean`
+Go to `lakefile.lean` and add the git repo to your dependencies:
+```lean
+package PackageName {
+  dependencies := #[
+    { name := `Tuple, src := Source.git "https://github.com/crabbo-rave/lean4-Tuple.git" "master"}
+    ...
+  ]
+  ...
+}
+```
 
 # Syntax
 Check `Examples.lean` for all the syntax.
