@@ -31,10 +31,10 @@ def tuplePatternMatch (tup: Tuple [Nat, String]) :=
   | _ => false
 
 #eval tuplePatternMatch ⟪1, "2"⟫ -- true
-#eval tuplePatternMatch ⟪1, "3"⟫  -- "hi"
+#eval tuplePatternMatch ⟪1, "3"⟫  -- false
 
--- Getting nth item
-#eval ⟪1,"2",3.0⟫.nth 1
+-- Getting nth item. Start at 0
+#eval ⟪1,"2",3.0⟫.nth 1 -- "2"
 #eval ⟪1,"2",3.0⟫#1
 #eval ⟪1,"2",3.0⟫@1
 #eval ⟪1,"2",3.0⟫[1]
