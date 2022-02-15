@@ -2,7 +2,16 @@
 Tuples for lean 4
 
 # Use
-Add the git repository to your `lakefile.lean`
+Go to `lakefile.lean` and add the git repo to your dependencies:
+```lean
+package PackageName {
+  dependencies := #[
+    { name := `Tuple, src := Source.git "https://github.com/crabbo-rave/lean4-Tuple.git" "master"}
+    ...
+  ]
+  ...
+}
+```
 
 # Syntax
 Check `Examples.lean` for all the syntax.
@@ -49,17 +58,15 @@ def tuplePatternMatch (tup: Tuple [Nat, String]) :=
   | _ => false
 
 #eval tuplePatternMatch ⟪1, "2"⟫ -- true
-#eval tuplePatternMatch ⟪1, "3"⟫ -
+#eval tuplePatternMatch ⟪1, "3"⟫ -- false
 ```
 
-Also getting the nth item, which still needs its own custom syntax and to work on bare tuples. This is the only way to get the nth element:
+You can also get the `nth` item in many different ways:
 ```lean
-def tuplePatternMatch (tup: Tuple [Nat, String]) :=
-  match tup with
-  | ⟪1, "2"⟫ => true
-  | ⟪2, "1"⟫ => true
-  | _ => false
-
-#eval tuplePatternMatch ⟪1, "2"⟫ -- true
-#eval tuplePatternMatch ⟪1, "3"⟫ -
+#eval ⟪1,"2",3.0⟫.nth 1 -- "2"
+#eval ⟪1,"2",3.0⟫#1
+#eval ⟪1,"2",3.0⟫@1
+#eval ⟪1,"2",3.0⟫[1]
+#eval ⟪1,"2",3.0⟫::1
+#eval ⟪1,"2",3.0⟫∧1
 ```
