@@ -40,3 +40,6 @@ def tuplePatternMatch (tup: Tuple [Nat, String]) :=
 #eval ⟪1,"2",3.0⟫[1]
 #eval ⟪1,"2",3.0⟫::1
 #eval ⟪1,"2",3.0⟫∧1
+
+#eval toString ⟪1, "2", 3.0, [4, 5, 6], #[7, 8]⟫
+#eval toString ⟪⟫

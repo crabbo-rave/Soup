@@ -10,7 +10,7 @@ inductive Tuple : List Type → Type 1 where
   | cons {α : Type} (x : α) {αs : List Type} (xs : Tuple αs) : Tuple (α :: αs)
 
 namespace Tuple
-
+ 
 syntax "⟪" sepBy(term, ",", ", ") "⟫" : term
 macro_rules
   | `(⟪⟫) => `(Tuple.unit)
@@ -35,15 +35,33 @@ instance (αs : List Type) [TupleRepr (Tuple αs)] : Repr (Tuple αs) where
   reprPrec
   | v, _ => "⟪" ++ TupleRepr.repr v ++ "⟫"
 
-def head {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) : α :=
+class TupleString (α : Type _) where
+  toString: α → String
+
+instance : TupleString (Tuple []) where
+  toString
+  | Tuple.unit => ""
+
+instance [ToString α] (αs : List Type) [TupleString (Tuple αs)] : TupleString (Tuple (α :: αs)) where
+  toString
+  | Tuple.cons x xs =>
+    match xs with
+    | Tuple.unit => toString x
+    | Tuple.cons _ _ => toString x ++ ", " ++ TupleString.toString xs 
+
+instance (αs : List Type) [TupleString (Tuple αs)] : ToString (Tuple αs) where
+  toString : Tuple αs → String
+  | t => "⟪" ++ TupleString.toString t ++ "⟫"
+
+def head {α : Type} {αs : List Type} (tup : Tuple (α :: αs)) : α :=
   match tup with
   | Tuple.cons x xs => x
 
-def tail {α : Type} {αs : List Type} (tup: Tuple (α :: αs)) : Tuple αs :=
+def tail {α : Type} {αs : List Type} (tup : Tuple (α :: αs)) : Tuple αs :=
   match tup with
   | Tuple.cons x xs => xs
 
-def length {αs : List Type} (tup: Tuple (αs)) : Nat :=
+def length {αs : List Type} (tup : Tuple (αs)) : Nat :=
   let rec lengthAux {αs : List Type} (tup: Tuple (αs)) (length: Nat) : Nat :=
     match tup with
     | Tuple.unit => length
