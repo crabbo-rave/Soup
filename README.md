@@ -36,6 +36,12 @@ And are essentially a list of types:
 #check ⟪⟫ -- unit : Tuple []
 ```
 
+If needed, you can convert them to strings:
+```lean
+#eval toString ⟪1, 4, 2.4, 'X', [1, 2, 45]⟫ -- "⟪1, 4, 2.4, 'X', [1, 2, 45]⟫"
+#eval toString ⟪⟫ -- "⟪⟫"
+```
+
 You can get the length of them:
 ```lean
 #eval ⟪⟫.length -- 0
