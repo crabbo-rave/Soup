@@ -36,6 +36,12 @@ And are essentially a list of types:
 #check ⟪⟫ -- unit : Tuple []
 ```
 
+If needed, you can convert them to strings:
+```lean
+#eval toString ⟪1, 4, 2.4, 'X', [1, 2, 45]⟫ -- "⟪1, 4, 2.4, 'X', [1, 2, 45]⟫"
+#eval toString ⟪⟫ -- "⟪⟫"
+```
+
 You can get the length of them:
 ```lean
 #eval ⟪⟫.length -- 0
@@ -70,3 +76,15 @@ You can also get the `nth` item in many different ways:
 #eval ⟪1,"2",3.0⟫::1
 #eval ⟪1,"2",3.0⟫∧1
 ```
+
+Lastly, probably the most powerful feature of these is that they dont have to of a fixed size when used as arguments. For instance, here is the length function:
+```lean
+def length {αs : List Type} (tup : Tuple (αs)) : Nat :=
+  let rec lengthAux {αs : List Type} (tup: Tuple (αs)) (length: Nat) : Nat :=
+    match tup with
+    | Tuple.unit => length
+    | Tuple.cons _ xs => lengthAux xs (length + 1)
+  match tup with
+  | ⟪⟫ => 0
+  | _ => lengthAux tup 0
+  ```
