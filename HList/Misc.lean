@@ -1,6 +1,12 @@
 import Mathlib.Data.Nat.Basic
 
 def Fin' (n : Nat) := Fin n
+def Fin'.succ (n : Fin' k) := Fin.succ n
+
+variable (a : α) (as : List α)
+
+instance : OfNat (Fin' (List.length (a :: as))) (nat_lit 0) :=
+  ⟨⟨0, (Nat.succ_pos _ : Nat.lt 0 (List.length (a :: as)))⟩⟩
 
 class IsPos (n : Nat) := pos : 0 < n
 
@@ -16,15 +22,8 @@ instance [IsPos (n - i)] : OfNat (Fin' n) i :=
   | cons a as, Nat.succ i, h =>
     have : LT.lt i.succ as.length.succ := length_cons .. ▸ h
     get' as i (Nat.le_of_succ_le_succ this)
-    
 
--- def Fin.ofNat'' {Inhabited Fin n} {n : Nat} (a : Nat) : Fin n :=
---   if a < n then (a : Fin n) else panic! ""
-
--- #print Nat
-
-notation "♯" n => (⟨n, by decide⟩ : Fin _)
-#check (♯3 : Fin 5) -- ok
-#check (♯4 : Fin 5) -- ok
--- #check (♯5 : Fin 5) -- fail
--- #check (♯6 : Fin 5) -- fail
+def List.get'' {α : Type u} : (as : List α) → (i : Fin' as.length) → α
+  | nil, i => False.elim $ Nat.not_lt_zero _ _
+  | a::as, 0 => a 
+  | a::as, Fin'.succ i => as.get'' i
