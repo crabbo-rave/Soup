@@ -15,7 +15,6 @@ instance (α β γ : Type _) [Nth β n γ] : Nth (α × β) (n + 1) γ where
 instance : Nth α 0 α where
   nth x := x
 
+notation:max p "." i => nth i p
+
 end Prod
-
-notation:max p "." i => Prod.Nth.nth i p
-

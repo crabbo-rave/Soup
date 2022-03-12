@@ -24,11 +24,8 @@ notation "♯" n => (⟨n, by decide⟩ : Fin _)
   | cons a as, Nat.succ i, h =>
     have : LT.lt i.succ as.length.succ := length_cons .. ▸ h
     get' as i (Nat.le_of_succ_le_succ this)
-<<<<<<< HEAD:HList/Misc.lean
 
 def List.get'' {α : Type u} : (as : List α) → (i : Fin' as.length) → α
   | nil, i => False.elim $ Nat.not_lt_zero _ _
   | a::as, 0 => a 
   | a::as, Fin'.succ i => as.get'' i
-=======
->>>>>>> 6d7b1932cbface08753cf900de90b31a1b8e99c6:Tuple/Misc.lean
