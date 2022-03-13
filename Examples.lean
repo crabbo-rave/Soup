@@ -1,4 +1,4 @@
-import HList
+import Soup
 open HList
 
 -- Evaluate HLists
@@ -34,7 +34,7 @@ def HListPatternMatch (tup: HList [Nat, String]) :=
 #eval HListPatternMatch ⟪1, "3"⟫  -- false
 
 -- Getting nth item. Start at 0
-#eval ⟪1,"2",3.0⟫.nth 1 -- "2"
+#eval ⟪1,"2",3.0⟫.nth #(1) -- "2"
 #eval ⟪1,"2",3.0⟫#1
 #eval ⟪1,"2",3.0⟫@1
 #eval ⟪1,"2",3.0⟫[1]

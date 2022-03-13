@@ -1,4 +1,4 @@
-import HList.Core
+import Soup.HList.Core
 
 /-- HList syntax -/
 syntax "⟪" sepBy(term, ",", ", ") "⟫" : term

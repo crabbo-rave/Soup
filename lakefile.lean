@@ -1,7 +1,7 @@
 import Lake
 open Lake DSL
 
-package HList {
+package Soup {
   dependencies := #[
     { 
       name := `mathlib, 

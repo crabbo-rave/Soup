@@ -1,4 +1,4 @@
-import HList.Core
+import Soup.HList.Core
 
 class TupleRepr (α : Type _) where
   repr: α → Std.Format
