@@ -27,8 +27,8 @@ def bar : HList [Nat, String, Float] := [1, "2", 3.0]
 #eval bar
 
 -- Functions and pattern matching
-def HListPatternMatch (hlist: HList [Nat, String]) :=
-  match hlist with
+def HListPatternMatch (l: HList [Nat, String]) :=
+  match l with
   | [1, "2"] => true
   | [2, "1"] => true
   | _ => false
