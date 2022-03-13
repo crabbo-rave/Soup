@@ -1,6 +1,7 @@
 import Soup.HList.Core
-import Soup.HList.Misc
 import Soup.HList.Syntax
+import Soup.Misc
+open Fin'
 
 namespace HList
 
