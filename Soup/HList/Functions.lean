@@ -12,17 +12,11 @@ def head {α : Type} {αs : List Type} : HList (α :: αs) → α
 
 /-- Returns a HList of all the elements besides the first -/
 def tail {α : Type} {αs : List Type} : HList (α :: αs) → HList αs
-  | HList.cons x xs => xs
-
-/-- Auxiliary function for length -/
-private def lengthAux {αs : List Type} (acc : Nat) : HList (αs) → Nat 
-  | HList.nil => acc
-  | HList.cons _ xs => lengthAux (acc + 1) xs 
+  | HList.cons x xs => xs 
 
 /-- Returns the length of a HList -/
-def length {αs : List Type} : HList (αs) → Nat 
-  | HList.nil => 0
-  | l => lengthAux 0 l
+def length {αs : List Type} (_ : HList αs) :=
+  αs.length
 
 /-- Returns the nth element of a HList -/
 def nth {αs : List Type} : HList αs → (n : Fin' αs.length) → αs.get' n 
