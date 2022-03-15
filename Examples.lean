@@ -37,12 +37,10 @@ def HListPatternMatch (l: HList [Nat, String]) :=
 #eval HListPatternMatch [1, "3"]  -- false
 
 -- Getting nth item. Start at 0
-#eval HList.nth [1,"2",3.0] #(1)-- "2"
+#eval HList.nth [1,"2",3.0] #1-- "2"
 #eval [1,"2",3.0]#1
 #eval [1,"2",3.0]@1
 #eval [1,"2",3.0][1]
-#eval [1,"2",3.0]::1
-#eval [1,"2",3.0]∧1
 
 #eval toString [1, "2", 3.0, [4, 5, 6], #[7, 8]]
 #eval toString HList.nil

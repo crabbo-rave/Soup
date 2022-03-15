@@ -5,9 +5,13 @@ import Soup.Range.Functions
 -- notation:max "[" st "..." sp "]" => [st:sp].toList ++ [sp]
 
 syntax "[" term "..." term "]" : term
+syntax "[" term "," term "..." term "]" : term
 macro_rules
   | `([$st ... $sp]) => `(
-    { start := $st, stop := $sp : Std.Range }.toList ++ [$sp]
+    let r := { start := $st, stop := $sp : Std.Range }
+    r.toList
   )
-
-#eval [1 ... 5]
+  | `([$st,$ste ... $sp]) => `(
+    let r := { start := $st, stop := $sp, step := $ste : Std.Range }.toArray
+    r.toList
+  )

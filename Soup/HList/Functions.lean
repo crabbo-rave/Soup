@@ -19,15 +19,14 @@ def length {αs : List Type} (_ : HList αs) :=
   αs.length
 
 /-- Returns the nth element of a HList -/
-def nth {αs : List Type} : HList αs → (n : Fin' αs.length) → αs.get' n 
+@[reducible] def nth {αs : List Type} : HList αs → (n : Fin' αs.length) → αs.get' n 
   | x::_, ⟨0, _⟩ => x
   | _::xs, ⟨n+1, h⟩ => xs.nth ⟨n, Nat.lt_of_succ_lt_succ h⟩
 
 /- Getting the nth index -/
-notation:max p "^" i => nth p #i
-notation:max p "#" i => nth p #i
-notation:max p "@" i => nth p #i
-notation:max p "[" i "]" => nth p #i
+notation:90 p "#" i => nth p #i
+notation:90 p "@" i => nth p #i
+notation:90 p "[" i "]" => nth p #i
 
 def getTypes {αs : List Type} (_ : HList αs) : List Type := 
   αs
