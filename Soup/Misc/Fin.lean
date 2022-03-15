@@ -16,6 +16,6 @@ instance : IsPos (Nat.succ n) := ⟨Nat.succ_pos _⟩
 instance [IsPos (n - i)] : OfNat (Fin' n) i :=
   ⟨i, Nat.lt_of_not_le fun h => ne_of_gt IsPos.pos (Nat.sub_eq_zero_iff_le.2 h)⟩
 
-notation "#(" a ")" => (Fin.mk a (by decide))
+notation:max "#" a:max => (Fin.mk a (by decide))
 
 end Fin'

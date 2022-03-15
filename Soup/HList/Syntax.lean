@@ -8,4 +8,4 @@ macro_rules (kind := hlist)
   | `([$x, $xs,*]) => `(HList.cons $x [$xs,*])
   
 /- HList.cons notation -/
-infixr:65 ":::" => HList.cons
+infixr:67 " :: " => HList.cons
