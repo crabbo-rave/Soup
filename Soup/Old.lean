@@ -1,4 +1,4 @@
-import Soup.HList.HList
+import Soup.HList
 
 /- Collection of older versions of functions worth keeping. -/
 namespace Old

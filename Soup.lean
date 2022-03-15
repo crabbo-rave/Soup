@@ -1,3 +1,3 @@
-import Soup.HList.HList
-import Soup.Misc.Misc
+import Soup.HList
+import Soup.Misc
 import Soup.Old
