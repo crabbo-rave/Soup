@@ -5,7 +5,7 @@ class Nth (α : Type _) (n : Nat) (β : outParam $ Sort _) where
 
 open Nth
 
-instance (α β : Type _) : Nth (α × β) 0 α where
+instance (α β : Type _) : Nth (α × β) 1 α where
   nth p := p.1
 
 instance (α β γ : Type _) [Nth β n γ] : Nth (α × β) (n + 1) γ where
@@ -15,6 +15,6 @@ instance (α β γ : Type _) [Nth β n γ] : Nth (α × β) (n + 1) γ where
 instance : Nth α 0 α where
   nth x := x
 
-notation:max p "." i => nth i p
+notation:max p "·" i => nth i p
 
 end Prod

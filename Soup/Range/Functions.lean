@@ -1,3 +1,5 @@
+import Soup.Range.Core
+
 namespace Std.Range
 
 def toArray (r : Std.Range) : Array Nat := Id.run do
@@ -9,3 +11,9 @@ def toArray (r : Std.Range) : Array Nat := Id.run do
 def toList (r : Std.Range) : List Nat := r.toArray.toList
 
 end Std.Range
+
+namespace Range'
+
+
+
+end Range'

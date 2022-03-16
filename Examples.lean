@@ -49,3 +49,14 @@ def baz : HList [Nat, String, Float, Char] :=
   1 :: ["1", 5.4, '4']
 
 #eval baz
+
+#eval [1 ... 4]
+#eval [5 ... 1]
+#eval [5,3 ... 20]
+#eval [5:8].toList
+
+-- def foo : Fin 5 := #7
+-- def foo' : List Nat := `[1 2 3 4 5]
+
+-- open List
+-- #eval foo'.get' foo
