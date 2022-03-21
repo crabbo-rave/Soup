@@ -60,3 +60,11 @@ def baz : HList [Nat, String, Float, Char] :=
 
 -- open List
 -- #eval foo'.get' foo
+
+def foo : HList [Int, String, Nat] := [-4, "cool", 28]
+
+def the (α : Type u) (a : α) := a
+
+#eval the (HList [Int, String, Nat]) (foo.mapNth 0 (·*-1))
+
+#eval foo.mapNth 0 (·*-1)

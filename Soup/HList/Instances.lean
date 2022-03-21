@@ -1,4 +1,5 @@
 import Soup.HList.Core
+import Soup.HList.Functions
 
 class HListRepr (α : Type _) where
   repr: α → Std.Format
@@ -20,7 +21,7 @@ instance (αs : List Type) [HListRepr (HList αs)] : Repr (HList αs) where
   | v, _ => "[" ++ HListRepr.repr v ++ "]"
 
 class HListString (α : Type _) where
-  toString: α → String
+  toString : α → String
 
 instance : HListString (HList []) where
   toString
