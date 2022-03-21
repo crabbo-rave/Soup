@@ -24,9 +24,7 @@ def length {αs : List Type} (_ : HList αs) :=
   | _::xs, ⟨n+1, h⟩ => xs.nth ⟨n, Nat.lt_of_succ_lt_succ h⟩
 
 /- Getting the nth index -/
-notation:90 p "#" i => nth p #i
 notation:90 p "@" i => nth p #i
-notation:90 p "[" i "]" => nth p #i
 
 def getTypes {αs : List Type} (_ : HList αs) : List Type := 
   αs
