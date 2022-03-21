@@ -15,4 +15,9 @@ package PackageName {
 
 # Features
 Contains:
-- 
+- Heterogeneous Lists
+- Extra List Functions
+- Accessing nth element of Prod
+- Range functionality
+- Unwrapping Fin type
+- Functor instance for Sum
