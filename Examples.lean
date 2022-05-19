@@ -66,3 +66,12 @@ def the (α : Type u) (a : α) := a
 #eval the (HList [Int, String, Nat]) (foo.mapNth 0 (·*-1))
 
 -- #eval foo.mapNth 0 (·*-1)
+
+def f {αs : List Type} : HList αs → (h : (αs.length = 3) || (αs.length = 5) := by simp) → Nat
+  | a, _ => a.length
+#eval [1, 2, 3, 4, 5][#3]
+
+#eval let n := [1, "3", 7.2, 1]; f n
+
+#eval ([1, 2, 3, 4, 5] : List Nat).get (7 : Fin 5)
+#eval ([1, 2, 3, 4, 5] : List Nat).get' #2
